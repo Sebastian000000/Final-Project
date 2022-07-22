@@ -5,4 +5,4 @@ To Do List
 - [ ] Secondary Drawing tool
 - [ ] Reset Canvas button
 - [ ] Quit Button
-- [ ]
+- [ ] Brush Thickness changer
