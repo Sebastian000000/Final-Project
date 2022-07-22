@@ -9,12 +9,25 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 //
-void setup() {}
+void setup() {
+  //Display Checker
+//Display Orientation Checker
+//Display and Canvas checker
+size(1000,1000);//Landscape
 //
-void draw() {}
+//POpulation
 //
-void keyPressed() {}
+rect();
 //
-void mousePressed() {}
+}
+
+void draw() {
+}
+//
+void keyPressed() {
+}
+//
+void mousePressed() {
+}
 //
 //End MAIN Program
