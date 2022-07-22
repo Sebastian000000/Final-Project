@@ -9,6 +9,7 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter;
+Boolean draw=false;
 //
 void setup() {
   //Display Checker
@@ -28,13 +29,21 @@ rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeigh
 }
 
 void draw() {
-  ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  //ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+   if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
 }
 //
 void keyPressed() {
 }
 //
 void mousePressed() {
+  if (mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) 
+  if (draw==true) {
+    draw=false;
+  } else {
+    draw = true;
+    
+  }
 }
 //
 //End MAIN Program
