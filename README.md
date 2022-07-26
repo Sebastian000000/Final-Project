@@ -6,3 +6,6 @@ To Do List
 - [X] Reset Canvas button
 - [ ] Quit Button
 - [X] Brush Thickness changer
+- [ ] Canvas Changer(2 colors and 2 images)
+- [ ] color changer (4 colors)
+- [ ] Music player
