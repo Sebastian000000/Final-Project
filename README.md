@@ -8,3 +8,4 @@ To Do List
 - [X] Brush Thickness changer
 - [ ] Canvas Changer(2 colors and 2 images)
 - [ ] color changer (4 colors)
+- [ ] Music player
