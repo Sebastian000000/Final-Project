@@ -1,8 +1,8 @@
 # Final-Project
 To Do List
-- [ ] Line Drawing tool
+- [X] Line Drawing tool
 - [ ] Eraser (i.e circle stamping tool, fill wth background color, remove stroke())
 - [ ] <del>Secondary Drawing tool</del>
-- [ ] Reset Canvas button
+- [X] Reset Canvas button
 - [ ] Quit Button
-- [ ] Brush Thickness changer
+- [X] Brush Thickness changer
