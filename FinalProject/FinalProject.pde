@@ -9,6 +9,17 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter;
+float buttonX1, buttonY1, buttonWidth1, buttonHeight1;
+float buttonX2, buttonY2, buttonWidth2, buttonHeight2;
+float buttonX3, buttonY3, buttonWidth3, buttonHeight3;
+float buttonX4, buttonY4, buttonWidth4, buttonHeight4;
+float thinButtonX1, thinButtonY1, thinButtonWidth1, thinButtonHeight1;
+float thinButtonX2, thinButtonY2, thinButtonWidth2, thinButtonHeight2;
+float thinButtonX3, thinButtonY3, thinButtonWidth3, thinButtonHeight3;
+color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03;
+int T=5;
+
+
 Boolean draw=false;
 //
 void setup() {
@@ -17,23 +28,61 @@ void setup() {
 //Display and Canvas checker
 size(1500,900);//Landscape
 //
-//POpulation
+//Population
 drawingSurfaceX = width*0;
 drawingSurfaceY = height*0;
 drawingSurfaceWidth = width*3/4;
 drawingSurfaceHeight = height*4/5;
 drawingDiameter = width*1/100;
+buttonX1 = width*3/4;
+buttonY1 = height*2/30;
+buttonWidth1 = width*1/4;
+buttonHeight1 = height*1/5;
+buttonX2 = width*3/4;
+buttonY2 = height*9/30;
+buttonWidth2 = width*1/4;
+buttonHeight2 = height*1/5;
+buttonX3 = width*3/4;
+buttonY3 = height*16/30;
+buttonWidth3 = width*1/4;
+buttonHeight3 = height*1/5;
+//buttonX4 = width;
+//buttonY4 = height;
+//buttonWidth4 = width;
+//buttonHeight4 = height;
+thinButtonX1 = width*3/4;
+thinButtonY1 = height*2/30;
+thinButtonWidth1 = width*1/4;
+thinButtonHeight1 = height*1/5;
+thinButtonX2 = width*3/4;
+thinButtonY2 = height*9/30;
+thinButtonWidth2 = width*1/4;
+thinButtonHeight2 = height*1/5;
+thinButtonX3 = width*3/4;
+thinButtonY3 = height*16/30;
+thinButtonWidth3 = width*1/4;
+thinButtonHeight3 = height*1/5;
+
 //
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1);
+rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2);
+rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3);
 //
 }
 
 void draw() {
   //ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  strokeWeight(T);//normal
    if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
+//
+ if ( mouseX>thinButtonX1   && mouseX<thinButtonX1+thinButtonWidth1 && mouseY>thinButtonY1 && mouseY<thinButtonY1+thinButtonHeight1) T=1;
+ if ( mouseX>thinButtonX2   && mouseX<thinButtonX2+thinButtonWidth2 && mouseY>thinButtonY2 && mouseY<thinButtonY2+thinButtonHeight2) T=5;
+ if ( mouseX>thinButtonX3   && mouseX<thinButtonX3+thinButtonWidth3 && mouseY>thinButtonY3 && mouseY<thinButtonY3+thinButtonHeight3) T=20;
 }
 //
 void keyPressed() {
+
 }
 //
 void mousePressed() {
@@ -42,8 +91,10 @@ void mousePressed() {
     draw=false;
   } else {
     draw = true;
+    //
+   
     
-  }
+  }//end of draw
 }
 //
 //End MAIN Program
