@@ -76,18 +76,21 @@ eraserX = width*28/32;
 eraserY = height*17/30;
 eraserWidth = width*3/30;
 eraserHeight = height*4/30;
+//
 thinButtonX1 = width*3/4;
-thinButtonY1 = height*2/30;
-thinButtonWidth1 = width*1/4;
-thinButtonHeight1 = height*1/5;
+thinButtonY1 = height*5/30;
+thinButtonWidth1 = width*29/128;
+thinButtonHeight1 = height*1/10;
+//
 thinButtonX2 = width*3/4;
 thinButtonY2 = height*9/30;
-thinButtonWidth2 = width*1/4;
-thinButtonHeight2 = height*1/5;
+thinButtonWidth2 = width*29/128;
+thinButtonHeight2 = height*1/10;
+//
 thinButtonX3 = width*3/4;
-thinButtonY3 = height*16/30;
-thinButtonWidth3 = width*1/4;
-thinButtonHeight3 = height*1/5;
+thinButtonY3 = height*13/30;
+thinButtonWidth3 = width*29/128;
+thinButtonHeight3 = height*1/10;
 //
 canvasX1 = width*0;
 canvasY1 = height*25/30;
