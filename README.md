@@ -10,8 +10,8 @@ To Do List
 - [X] color changer (4 colors)
 - [ ] Music player
 - [X] icons on buttons
-- [ ] hover over for buttons
-- [ ] text(tbd)
+- [ ] hover over for buttons// in progress
+- [ ] text//90%complete
 - [ ] date and time
-- [ ] display && orientation checker
+- [X] display && orientation checker
 - [X] rounded off corners for buttons
