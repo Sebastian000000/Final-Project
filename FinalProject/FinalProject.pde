@@ -27,6 +27,12 @@ float blueX, blueY, blueWidth, blueHeight;
 float blackX, blackY, blackWidth, blackHeight;
 float grayX, grayY, grayWidth, grayHeight;
 float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
+float lineX1, lineX2, lineY;
+float normalLineX1, normalLineX2, normalLineY;
+float thickLineX1, thickLineX2, thickLineY;
+
+
+
 color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1;
 int T=5;
 int C=black;
@@ -132,17 +138,44 @@ grayX = width*63/120;
 grayY = height*98/120;
 grayWidth = width*22/120;
 grayHeight = height*5/30;
-
+//
+lineX1 = width*25/32;
+lineX2 = width*61/64;
+lineY = height*7/30;
+//
+normalLineX1 = width*25/32;
+normalLineX2 = width*61/64;
+normalLineY = height*11/30;
+//
+thickLineX1 = width*25/32;
+thickLineX2 = width*61/64;
+thickLineY = height*15/30;
 //
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 fill(red);
 rect (quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight,25);
+//
 fill(white);
 rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1,25);
+strokeWeight(1);
+stroke(black);
+line(lineX1, lineY, lineX2, lineY);
+strokeWeight(1);
+//
 fill(white);
 rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2,25);
+strokeWeight(5);
+stroke(black);
+line(normalLineX1,normalLineY, normalLineX2, normalLineY);
+strokeWeight(1);
+//
 fill(white);
 rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3,25);
+strokeWeight(20);
+stroke(black);
+line(thickLineX1, thickLineY, thickLineX2, thickLineY);
+strokeWeight(1);
+
 fill(white);
 rect (clearX, clearY, clearWidth, clearHeight,25);
 fill(white);
