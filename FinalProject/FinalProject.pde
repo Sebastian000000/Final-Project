@@ -30,12 +30,19 @@ float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
 float lineX1, lineX2, lineY;
 float normalLineX1, normalLineX2, normalLineY;
 float thickLineX1, thickLineX2, thickLineY;
+float quitTextX,quitTextY;
+float thinTextX,thinTextY;
+float normalTextX,normalTextY;
+float thickTextX,thickTextY;
+float eraseTextX, eraseTextY;
+float clearTextX, clearTextY;
 
 
 
-color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1;
+color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1,buttonFill;
 int T=5;
 int C=black;
+int B=white;
 
 
 Boolean draw=false;
@@ -151,12 +158,37 @@ thickLineX1 = width*25/32;
 thickLineX2 = width*61/64;
 thickLineY = height*15/30;
 //
+quitTextX = width*53/64;
+quitTextY = height*3/30;
+//
+thinTextX = width*53/64;
+thinTextY = height*13/60;
+//
+normalTextX = width*53/64;
+normalTextY = height*21/60;
+//
+thickTextX = width*53/64;
+thickTextY = height*29/60;
+//
+eraseTextX = width*115/128;
+eraseTextY = height*77/120;
+//
+clearTextX = width*100/128;
+clearTextY = height*77/120;
+//
+fill(B);
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-fill(red);
-rect (quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight,25);
+//fill(red);
+//rect (quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight,25);
+//fill(black);
+//textSize(50);
+//text("Quit", quitTextX, quitTextY);
 //
 fill(white);
 rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1,25);
+fill(black);
+textSize(35);
+text("Thin", thinTextX, thinTextY);
 strokeWeight(1);
 stroke(black);
 line(lineX1, lineY, lineX2, lineY);
@@ -164,6 +196,9 @@ strokeWeight(1);
 //
 fill(white);
 rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2,25);
+fill(black);
+textSize(35);
+text("Normal", normalTextX, normalTextY);
 strokeWeight(5);
 stroke(black);
 line(normalLineX1,normalLineY, normalLineX2, normalLineY);
@@ -171,6 +206,9 @@ strokeWeight(1);
 //
 fill(white);
 rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3,25);
+fill(black);
+textSize(35);
+text("Thick", thickTextX, thickTextY);
 strokeWeight(20);
 stroke(black);
 line(thickLineX1, thickLineY, thickLineX2, thickLineY);
@@ -178,8 +216,14 @@ strokeWeight(1);
 
 fill(white);
 rect (clearX, clearY, clearWidth, clearHeight,25);
+fill(black);
+textSize(25);
+text("Clear", clearTextX, clearTextY);
 fill(white);
 rect (eraserX, eraserY, eraserWidth, eraserHeight,25);
+fill (black);
+textSize(25);
+text("Eraser", eraseTextX, eraseTextY);
 fill(white);
 rect (grayX, grayY, grayWidth, grayHeight,25);
 fill(white);
@@ -203,11 +247,25 @@ noFill();
 }
 
 void draw() {
+  
   //ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   strokeWeight(T);//normal
   stroke(C);
-   if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
-
+   
+  if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
+//
+if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
+    buttonFill = green;
+  } else {
+    buttonFill = red;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  strokeWeight(1);
+  stroke(black);
+  rect(quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight,25);
+  fill(black);
+textSize(50);
+text("Quit", quitTextX, quitTextY);
 //
  
 
@@ -231,14 +289,20 @@ void mousePressed() {
  noStroke();
  fill(white);//change to canvas color!
  if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight ) rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-//srtoke colors
+//stroke colors
 if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) C=red;
 if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) C=green;
 if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
 if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
+//Canvas color
+if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) B=white;
+if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) B=black;
+//if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) background(white);
+//if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) background(black);
 //quit button
 if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) exit();
 //
+
 }
 //
 //End MAIN Program
