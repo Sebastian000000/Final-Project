@@ -236,8 +236,9 @@ if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight)
 if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) C=green;
 if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
 if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
+//quit button
+if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) exit();
 //
-
 }
 //
 //End MAIN Program
