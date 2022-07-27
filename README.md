@@ -9,10 +9,9 @@ To Do List
 - [ ] Canvas Changer(2 colors and 2 images)//partially done
 - [X] color changer (4 colors)
 - [ ] Music player
-- [ ] icons on buttons
+- [X] icons on buttons
 - [ ] hover over for buttons
 - [ ] text(tbd)
 - [ ] date and time
 - [ ] display && orientation checker
 - [X] rounded off corners for buttons
-- [ ] 
