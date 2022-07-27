@@ -12,6 +12,6 @@ To Do List
 - [X] icons on buttons
 - [ ] hover over for buttons// in progress
 - [ ] text//90%complete
-- [ ] date and time
+- [ ] <del>date and time</del>
 - [X] display && orientation checker
 - [X] rounded off corners for buttons
