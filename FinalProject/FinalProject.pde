@@ -26,8 +26,10 @@ float greenX, greenY, greenWidth, greenHeight;
 float blueX, blueY, blueWidth, blueHeight;
 float blackX, blackY, blackWidth, blackHeight;
 float grayX, grayY, grayWidth, grayHeight;
-color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80;
+float quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight;
+color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1;
 int T=5;
+int C=black;
 
 
 Boolean draw=false;
@@ -37,32 +39,41 @@ void setup() {
 //Display Orientation Checker
 //Display and Canvas checker
 size(1500,900);//Landscape
-background(black);
+background(gray);
 //
 //Population
 drawingSurfaceX = width*0;
 drawingSurfaceY = height*0;
 drawingSurfaceWidth = width*34/48;
 drawingSurfaceHeight = height*4/5;
+//
 drawingDiameter = width*1/100;
+//
+quitButtonX = width*3/4;
+quitButtonY = height*1/30;
+quitButtonWidth = width*29/128;
+quitButtonHeight = height*1/10;
+//
 buttonX1 = width*3/4;
-buttonY1 = height*2/30;
+buttonY1 = height*5/30;
 buttonWidth1 = width*29/128;
-buttonHeight1 = height*1/5;
+buttonHeight1 = height*1/10;
+//
 buttonX2 = width*3/4;
 buttonY2 = height*9/30;
 buttonWidth2 = width*29/128;
-buttonHeight2 = height*1/5;
+buttonHeight2 = height*1/10;
+//
 buttonX3 = width*3/4;
-buttonY3 = height*16/30;
+buttonY3 = height*13/30;
 buttonWidth3 = width*29/128;
-buttonHeight3 = height*1/5;
+buttonHeight3 = height*1/10;
 clearX = width*3/4;
-clearY = height*23/30;
+clearY = height*17/30;
 clearWidth = width*3/30;
 clearHeight = height*4/30;
 eraserX = width*28/32;
-eraserY = height*23/30;
+eraserY = height*17/30;
 eraserWidth = width*3/30;
 eraserHeight = height*4/30;
 thinButtonX1 = width*3/4;
@@ -121,24 +132,35 @@ grayHeight = height*5/30;
 
 //
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1);
-rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2);
-rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3);
-rect (clearX, clearY, clearWidth, clearHeight);
-rect (eraserX, eraserY, eraserWidth, eraserHeight);
- rect (grayX, grayY, grayWidth, grayHeight);
+fill(red);
+rect (quitButtonX, quitButtonY, quitButtonWidth, quitButtonHeight,25);
+fill(white);
+rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1,25);
+fill(white);
+rect(buttonX2, buttonY2, buttonWidth2, buttonHeight2,25);
+fill(white);
+rect(buttonX3, buttonY3, buttonWidth3, buttonHeight3,25);
+fill(white);
+rect (clearX, clearY, clearWidth, clearHeight,25);
+fill(white);
+rect (eraserX, eraserY, eraserWidth, eraserHeight,25);
+fill(white);
+rect (grayX, grayY, grayWidth, grayHeight,25);
+fill(white);
 rect (canvasX1, canvasY1, canvasWidth1, canvasHeight1);
+fill (black);
 rect (canvasX2, canvasY2, canvasWidth2, canvasHeight2);
+fill(purple);//finder
 rect (canvasX3, canvasY3, canvasWidth3, canvasHeight3);
 rect (canvasX4, canvasY4, canvasWidth4, canvasHeight4);
 fill(red);
-rect (redX, redY, redWidth, redHeight);
+rect (redX, redY, redWidth, redHeight,15);
 fill (green);
-rect (greenX, greenY, greenWidth, greenHeight);
+rect (greenX, greenY, greenWidth, greenHeight,15);
 fill (blue);
-rect (blueX, blueY, blueWidth, blueHeight);
+rect (blueX, blueY, blueWidth, blueHeight,15);
 fill (black);
-rect (blackX, blackY, blackWidth, blackHeight);
+rect (blackX, blackY, blackWidth, blackHeight,15);
 noFill();
 
 //
@@ -147,7 +169,9 @@ noFill();
 void draw() {
   //ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
   strokeWeight(T);//normal
+  stroke(C);
    if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
+
 //
  
 
@@ -158,7 +182,7 @@ void keyPressed() {
 }
 //
 void mousePressed() {
-  if (mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) 
+  if (mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth-10 && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight-10) 
   if (draw==true) {
     draw=false;
   } else {
@@ -168,7 +192,16 @@ void mousePressed() {
   if ( mouseX>thinButtonX1   && mouseX<thinButtonX1+thinButtonWidth1 && mouseY>thinButtonY1 && mouseY<thinButtonY1+thinButtonHeight1) T=1;
  if ( mouseX>thinButtonX2   && mouseX<thinButtonX2+thinButtonWidth2 && mouseY>thinButtonY2 && mouseY<thinButtonY2+thinButtonHeight2) T=5;
  if ( mouseX>thinButtonX3   && mouseX<thinButtonX3+thinButtonWidth3 && mouseY>thinButtonY3 && mouseY<thinButtonY3+thinButtonHeight3) T=20;
- if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight ) rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter);
+ noStroke();
+ fill(white);//change to canvas color!
+ if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight ) rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+//srtoke colors
+if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) C=red;
+if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) C=green;
+if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
+if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
+//
+
 }
 //
 //End MAIN Program
