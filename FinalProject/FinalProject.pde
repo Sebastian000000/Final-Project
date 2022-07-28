@@ -39,9 +39,11 @@ float clearTextX, clearTextY;
 
 
 
-color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1, darkRed=#BC0404, lightGreen=#00B936, lightBlue=#0006A0, lightBlack=#52525A;
+color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1;
+color darkRed=#BC0404, lightGreen=#00B936, lightBlue=#0006A0, lightBlack=#52525A, imageOutline=#00FFCE;
 color hoverover=#E8E8E8, hoveroverRed, hoveroverGreen, hoveroverBlue, hoveroverBlack; 
-color buttonFill,buttonFill2,buttonFill3, buttonFill4, buttonFill5, buttonFill6, buttonFill7, buttonFill8, buttonFill9, buttonFill10, buttonFill11, buttonFill12;
+color buttonFill,buttonFill2,buttonFill3, buttonFill4, buttonFill5, buttonFill6, buttonFill7;
+color buttonFill8, buttonFill9, buttonFill10, buttonFill11, buttonFill12, buttonFill13, buttonFill14;
 int T=5;
 int C=black;
 int B=white;
@@ -106,22 +108,22 @@ thinButtonWidth3 = width*29/128;
 thinButtonHeight3 = height*1/10;
 //
 canvasX1 = width*0;
-canvasY1 = height*25/30;
+canvasY1 = height*51/60;
 canvasWidth1 = width*3/30;
 canvasHeight1 = height*4/30;
 //
 canvasX2 = width*4/30;
-canvasY2 = height*25/30;
+canvasY2 = height*51/60;
 canvasWidth2 = width*3/30;
 canvasHeight2 = height*4/30;
 //
 canvasX3 = width*8/30;
-canvasY3 = height*25/30;
+canvasY3 = height*51/60;
 canvasWidth3 = width*3/30;
 canvasHeight3 = height*4/30;
 //
 canvasX4 = width*12/30;
-canvasY4 = height*25/30;
+canvasY4 = height*51/60;
 canvasWidth4 = width*3/30;
 canvasHeight4 = height*4/30;
 //
@@ -181,16 +183,6 @@ rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeigh
 //
 fill(white);
 rect (grayX, grayY, grayWidth, grayHeight,25);
-fill(white);
-rect (canvasX1, canvasY1, canvasWidth1, canvasHeight1);
-
-fill(purple);//finder
-rect (canvasX3, canvasY3, canvasWidth3, canvasHeight3);
-rect (canvasX4, canvasY4, canvasWidth4, canvasHeight4);
-//
-
-noFill();
-
 //
 }
 
@@ -316,7 +308,7 @@ if ( mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY
 fill (buttonFill10);
 rect (blackX, blackY, blackWidth, blackHeight,15);
 //
-if ( mouseX>canvasX1 && mouseX<canvasX2+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1 ) {
+if ( mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1 ) {
     buttonFill11 = hoverover;
   } else {
     buttonFill11 = white;
@@ -324,13 +316,31 @@ if ( mouseX>canvasX1 && mouseX<canvasX2+canvasWidth1 && mouseY>canvasY1 && mouse
 fill (buttonFill11);
 rect (canvasX1, canvasY1, canvasWidth1, canvasHeight1);
 //
-if ( mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY1+canvasHeight2 ) {
+if ( mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2 ) {
     buttonFill12 = lightBlack;
   } else {
     buttonFill12 = black;
   }
 fill (buttonFill12);
 rect (canvasX2, canvasY2, canvasWidth2, canvasHeight2);
+//
+if ( mouseX>canvasX3 && mouseX<canvasX3+canvasWidth3 && mouseY>canvasY3 && mouseY<canvasY3+canvasHeight3 ) {
+    buttonFill13 = imageOutline;
+  } else {
+    buttonFill13 = black;
+  }
+noFill();//finder
+stroke(buttonFill13);
+rect (canvasX3, canvasY3, canvasWidth3, canvasHeight3);
+//
+if ( mouseX>canvasX4 && mouseX<canvasX4+canvasWidth4 && mouseY>canvasY4 && mouseY<canvasY4+canvasHeight4 ) {
+    buttonFill14 = imageOutline;
+  } else {
+    buttonFill14 = black;
+  }
+noFill();//finder
+stroke(buttonFill14);
+rect (canvasX4, canvasY4, canvasWidth4, canvasHeight4);
 //
 }
 //
