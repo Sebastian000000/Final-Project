@@ -607,7 +607,7 @@ void mousePressed() {
       song1.rewind();
       fill(gray);
       noStroke();
-      circle(muteX, muteY, muteDiameter);
+      circle(muteX, muteY, muteDiameter*1.05);
     } else {
       song1.rewind();
     }
