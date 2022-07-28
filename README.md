@@ -8,7 +8,7 @@ To Do List
 - [X] Brush Thickness changer
 - [ ] Canvas Changer(2 colors and 2 images)//question to be asked
 - [X] color changer (4 colors)
-- [ ] Music player
+- [X] Music player
 - [X] icons on buttons
 - [X] hover over for buttons
 - [X] text

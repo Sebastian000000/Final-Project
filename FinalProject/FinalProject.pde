@@ -53,6 +53,7 @@ float squareX5, squareY5, squareWidth5, squareHeight5;
 float loopX, loopY, loopWidth, loopHeight;
 float dateX, dateY;
 float AudioX, AudioY;
+float muteX, muteY, muteDiameter;
 PImage img1;
 PImage img2;
 PImage img3;
@@ -67,9 +68,20 @@ int C=black;
 int BG=white;
 int cOld;
 Boolean draw=false;
+Boolean drawCanvas=false;
+Boolean drawCanvas3=false;
+Boolean drawCanvas4=false;
 String myDate="";
 //
+Minim minim;
+AudioPlayer song1;//creates playlist
+AudioMetaData songMetaData1;
+//
 void setup() {
+  //Audio
+  minim = new Minim(this);
+  song1 = minim.loadFile("Music/Around_The_Corner_-_Infraction.mp3");
+  songMetaData1 = song1.getMetaData();
   //
   //Date stamp
   myDate = nf(year(), 4)+"/"
@@ -272,11 +284,19 @@ squareHeight5=height*18/240;
 AudioX = width*8/10;
 AudioY = height*36/40;
 //
+muteX = width*471/512;
+muteY = height*425/480;
+muteDiameter = width*5/240;
+//
 fill(BG);
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 //
 fill(white);
 rect (grayX, grayY, grayWidth, grayHeight,25);
+//
+//fill(red);
+//noStroke();
+//circle(muteX, muteY, muteDiameter);
 //
 fill(black);
 textSize(40);
@@ -292,11 +312,38 @@ img3 = loadImage("Images/Player Buttons.png");
 }
 
 void draw() {
+  //Audio
+  if (song1.isLooping() && song1.loopCount()!=-1) println("there are", song1.loopCount(), "loops left");
+  if (song1.isLooping() && song1.loopCount()==-1) println("Looping infintely");
+  if (song1.isPlaying() && !song1.isLooping()) println("Play Once");
+  println("Song Position", song1.position(), "Song Length", song1.length());
+  //
 //if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   
   fill(black);
   textSize(40);
   text(myDate, dateX,dateY );
+  //
+  if (drawCanvas==true) {
+  fill(BG);
+  noStroke();
+rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+ fill(white);
+ drawCanvas=false;
+  }
+  //
+    if (drawCanvas3==true) {
+  noStroke();
+image( img1,drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+ drawCanvas3=false;
+  }
+  //
+    if (drawCanvas4==true) {
+  noStroke();
+image( img2,drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+ drawCanvas4=false;
+  }
+  //
   strokeWeight(T);//normal
   stroke(C);
   if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
@@ -536,6 +583,53 @@ void keyPressed() {
 }
 //
 void mousePressed() {
+  //
+  //
+  if (mouseX>loopX && mouseX<loopX+loopWidth && mouseY>loopY && mouseY<loopY+loopHeight ) song1.loop();
+  if (mouseX>squareX5 && mouseX<squareX5+squareWidth5 && mouseY>squareY5 && mouseY<squareY5+squareHeight5) {
+    if (song1.isMuted()) {
+      fill(green);
+      noStroke();
+      circle(muteX, muteY, muteDiameter);
+      song1.unmute();
+    } else {
+      song1.mute();
+      fill(red);
+      noStroke();
+      circle(muteX, muteY, muteDiameter);
+    }
+  }//End Mute Button
+  if (mouseX>squareX3 && mouseX<squareX3+squareWidth3 && mouseY>squareY3 && mouseY<squareY3+squareHeight3 ) song1.skip(10000);//skip forward 1 second or 1000 milliseconds
+  if (mouseX>squareX4 && mouseX<squareX4+squareWidth4 && mouseY>squareY4 && mouseY<squareY4+squareHeight4 ) song1.skip(-10000);
+  if (mouseX>squareX1 && mouseX<squareX1+squareWidth1 && mouseY>squareY1 && mouseY<squareY1+squareHeight1 ) {
+    if (song1.isPlaying()) {
+      song1.pause();
+      song1.rewind();
+      fill(gray);
+      noStroke();
+      circle(muteX, muteY, muteDiameter);
+    } else {
+      song1.rewind();
+    }
+  }// end stop
+  if ( mouseX>squareX2 && mouseX<squareX2+squareWidth2 && mouseY>squareY2 && mouseY<squareY2+squareHeight2 ) {
+    if (song1.isPlaying() ) {
+      song1.pause();
+    } else if (song1.position() >= song1.length()-song1.length()*9/10) {
+      song1.rewind();
+      song1.play ();
+    } else {
+      song1.play();
+      fill(green);
+      noStroke();
+      circle(muteX, muteY, muteDiameter);
+    }
+  }
+  
+  
+  
+  
+  //
   if (mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth-10 && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight-10) 
   if (draw==true) {
     draw=false;
@@ -562,15 +656,34 @@ void mousePressed() {
    T=20;
    C=cOld;
  }
- if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight ) rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+ if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight) {
+   BG=white;
+   drawCanvas=true;
+  
+ }
 //stroke colors
 if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) C=red;
 if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) C=green;
 if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
 if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
 //Canvas color
-if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) BG=white;
-if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) BG=black;
+if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) {
+  BG=white;
+  drawCanvas=true;
+}
+if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) {
+  BG=black;
+  drawCanvas=true;
+}
+if (mouseX>canvasX3 && mouseX<canvasX3+canvasWidth3 && mouseY>canvasY3 && mouseY<canvasY3+canvasHeight3) {
+  
+  drawCanvas3=true;
+}
+if (mouseX>canvasX4 && mouseX<canvasX4+canvasWidth4 && mouseY>canvasY4 && mouseY<canvasY4+canvasHeight4) {
+  
+  drawCanvas4=true;
+}
+//
 //quit button
 if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) exit();
 //
