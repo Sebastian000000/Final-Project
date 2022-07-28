@@ -36,22 +36,46 @@ float normalTextX,normalTextY;
 float thickTextX,thickTextY;
 float eraseTextX, eraseTextY;
 float clearTextX, clearTextY;
-
-
-
+float bTextX, bTextY;
+float imageX1, imageY1, imageWidth1, imageHeight1;
+float imageX2, imageY2, imageWidth2, imageHeight2;
+float imageX3, imageY3, imageWidth3, imageHeight3;
+float circleX1, circleY1, circleDiameter;
+float circleX2, circleY2;
+float circleX3, circleY3;
+float circleX4, circleY4;
+float circleX5, circleY5;
+float squareX1, squareY1, squareWidth1, squareHeight1;
+float squareX2, squareY2, squareWidth2, squareHeight2;
+float squareX3, squareY3, squareWidth3, squareHeight3;
+float squareX4, squareY4, squareWidth4, squareHeight4;
+float squareX5, squareY5, squareWidth5, squareHeight5;
+float loopX, loopY, loopWidth, loopHeight;
+float dateX, dateY;
+float AudioX, AudioY;
+PImage img1;
+PImage img2;
+PImage img3;
 color red=#FF033E,blue=#1203FA,black=#000000,green=#1EFA03, gray=#817F80,white=#FFFFFF, purple=#8206C1;
 color darkRed=#BC0404, lightGreen=#00B936, lightBlue=#0006A0, lightBlack=#52525A, imageOutline=#00FFCE;
 color hoverover=#E8E8E8, hoveroverRed, hoveroverGreen, hoveroverBlue, hoveroverBlack; 
 color buttonFill,buttonFill2,buttonFill3, buttonFill4, buttonFill5, buttonFill6, buttonFill7;
 color buttonFill8, buttonFill9, buttonFill10, buttonFill11, buttonFill12, buttonFill13, buttonFill14;
+color buttonFill15, buttonFill16, buttonFill17, buttonFill18, buttonFill19, buttonFill20;
 int T=5;
 int C=black;
-int B=white;
-
-
+int BG=white;
+int cOld;
 Boolean draw=false;
+String myDate="";
 //
 void setup() {
+  //
+  //Date stamp
+  myDate = nf(year(), 4)+"/"
+    +nf(month(), 2)+"/"
+    +nf(day(), 2); 
+  //orientation checker
  //
 size(1500,900);//Landscape
 background(gray);
@@ -178,21 +202,106 @@ eraseTextY = height*77/120;
 clearTextX = width*100/128;
 clearTextY = height*77/120;
 //
-fill(B);
+bTextX = width*1/8;
+bTextY = height*67/80;
+//
+imageX1 = (width*8/30)*1.012;
+imageY1 = (height*51/60)*1.005;
+imageWidth1 = (width*3/30)*0.95;
+imageHeight1 = (height*4/30)*0.95;
+//
+imageX2 = (width*12/30)*1.0085;
+imageY2 = (height*51/60)*1.005;
+imageWidth2 = (width*3/30)*0.95;
+imageHeight2 = (height*4/30)*0.95;
+//
+imageX3 = (width*92/128);
+imageY3 = (height*92/120);
+imageWidth3 = (width*8/30);
+imageHeight3 = (height*9/120);
+//
+dateX = width*8/10;
+dateY = height*39/40;
+//
+circleX1 = width*379/512;
+circleY1 = height*386/480;
+circleDiameter = width*10/240;
+//
+circleX2 = width*401/512;
+circleY2 = height*386/480;
+//
+circleX3 = width*423/512;
+circleY3 = height*386/480;
+//
+circleX4 = width*445/512;
+circleY4 = height*386/480;
+//
+circleX5 = width*468/512;
+circleY5 = height*386/480;
+//
+loopX = width*481/512;
+loopY = height*92/120;
+loopWidth = width*22/480;
+loopHeight = height*18/240;
+//
+squareX1=width*92/128;
+squareY1=height*92/120;
+squareWidth1=width*10/240;
+squareHeight1=height*18/240;
+//
+squareX2=width*195/256;
+squareY2=height*92/120;
+squareWidth2=width*10/240;
+squareHeight2=height*18/240;
+//
+squareX3=width*206/256;
+squareY3=height*92/120;
+squareWidth3=width*10/240;
+squareHeight3=height*18/240;
+//
+squareX4=width*434/512;
+squareY4=height*92/120;
+squareWidth4=width*41/960;
+squareHeight4=height*18/240;
+//
+squareX5=width*457/512;
+squareY5=height*92/120;
+squareWidth5=width*22/480;
+squareHeight5=height*18/240;
+//
+AudioX = width*8/10;
+AudioY = height*36/40;
+//
+fill(BG);
 rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 //
 fill(white);
 rect (grayX, grayY, grayWidth, grayHeight,25);
 //
+fill(black);
+textSize(40);
+text("Background Options", bTextX, bTextY);
+//
+fill(black);
+textSize(50);
+text("Audio:", AudioX, AudioY);
+//
+img1 = loadImage("Images/Mandala.jpg");
+img2 = loadImage("Images/Minions.jpg");
+img3 = loadImage("Images/Player Buttons.png");
 }
 
 void draw() {
-//fill(B);
 //if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-  //ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter);
+  
+  fill(black);
+  textSize(40);
+  text(myDate, dateX,dateY );
   strokeWeight(T);//normal
   stroke(C);
-  if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
+  if (draw == true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+    line (mouseX, mouseY, pmouseX, pmouseY);
+  }
 //
 if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
     buttonFill = green;
@@ -327,20 +436,98 @@ rect (canvasX2, canvasY2, canvasWidth2, canvasHeight2);
 if ( mouseX>canvasX3 && mouseX<canvasX3+canvasWidth3 && mouseY>canvasY3 && mouseY<canvasY3+canvasHeight3 ) {
     buttonFill13 = imageOutline;
   } else {
-    buttonFill13 = black;
+    buttonFill13 = gray;
   }
 noFill();//finder
 stroke(buttonFill13);
 rect (canvasX3, canvasY3, canvasWidth3, canvasHeight3);
+ image(img1, imageX1, imageY1, imageWidth1, imageHeight1);
 //
 if ( mouseX>canvasX4 && mouseX<canvasX4+canvasWidth4 && mouseY>canvasY4 && mouseY<canvasY4+canvasHeight4 ) {
     buttonFill14 = imageOutline;
   } else {
-    buttonFill14 = black;
+    buttonFill14 = gray;
   }
 noFill();//finder
 stroke(buttonFill14);
 rect (canvasX4, canvasY4, canvasWidth4, canvasHeight4);
+image(img2, imageX2, imageY2, imageWidth2, imageHeight2);
+//
+if ( mouseX>squareX1 && mouseX<squareX1+squareWidth1 && mouseY>squareY1 && mouseY<squareY1+squareHeight1 ) {
+    buttonFill15 = imageOutline;
+  } else {
+    buttonFill15 = blue;
+  }
+image(img3, imageX3, imageY3, imageWidth3, imageHeight3);
+noFill();//finder
+stroke(buttonFill15);
+strokeWeight(4);
+circle (circleX1, circleY1, circleDiameter);
+//noFill();
+//stroke(green);
+//rect(squareX1, squareY1, squareWidth1,squareHeight1);
+//
+if ( mouseX>squareX2 && mouseX<squareX2+squareWidth2 && mouseY>squareY2 && mouseY<squareY2+squareHeight2 ) {
+    buttonFill16 = imageOutline;
+  } else {
+    buttonFill16 = blue;
+  }
+noFill();//finder
+stroke(buttonFill16);
+strokeWeight(4);
+circle (circleX2, circleY2, circleDiameter);
+//noFill();
+//stroke(green);
+//rect(squareX2, squareY2, squareWidth2,squareHeight2);
+//
+if ( mouseX>squareX3 && mouseX<squareX3+squareWidth3 && mouseY>squareY3 && mouseY<squareY3+squareHeight3 ) {
+    buttonFill17 = imageOutline;
+  } else {
+    buttonFill17 = blue;
+  }
+noFill();//finder
+stroke(buttonFill17);
+strokeWeight(4);
+circle (circleX3, circleY3, circleDiameter);
+//noFill();
+//stroke(green);
+//rect(squareX3, squareY3, squareWidth3,squareHeight3);
+//
+if ( mouseX>squareX4 && mouseX<squareX4+squareWidth4 && mouseY>squareY4 && mouseY<squareY4+squareHeight4 ) {
+    buttonFill18 = imageOutline;
+  } else {
+    buttonFill18 = blue;
+  }
+noFill();//finder
+stroke(buttonFill18);
+strokeWeight(4);
+circle (circleX4, circleY4, circleDiameter);
+//noFill();
+//stroke(green);
+//rect(squareX4, squareY4, squareWidth4,squareHeight4);
+//
+if ( mouseX>squareX5 && mouseX<squareX5+squareWidth5 && mouseY>squareY5 && mouseY<squareY5+squareHeight5 ) {
+    buttonFill19 = imageOutline;
+  } else {
+    buttonFill19 = blue;
+  }
+noFill();//finder
+stroke(buttonFill19);
+strokeWeight(4);
+circle (circleX5, circleY5, circleDiameter);
+//noFill();
+//stroke(green);
+//rect(squareX5, squareY5, squareWidth5,squareHeight5);
+//
+if ( mouseX>loopX && mouseX<loopX+loopWidth && mouseY>loopY && mouseY<loopY+loopHeight ) {
+    buttonFill20 = imageOutline;
+  } else {
+    buttonFill20 = blue;
+  }
+noFill();//finder
+stroke(buttonFill20);
+strokeWeight(4);
+rect(loopX, loopY, loopWidth,loopHeight);
 //
 }
 //
@@ -356,11 +543,25 @@ void mousePressed() {
     draw = true;
     // 
   }//end of draw
-  if ( mouseX>thinButtonX1   && mouseX<thinButtonX1+thinButtonWidth1 && mouseY>thinButtonY1 && mouseY<thinButtonY1+thinButtonHeight1) T=1;
- if ( mouseX>thinButtonX2   && mouseX<thinButtonX2+thinButtonWidth2 && mouseY>thinButtonY2 && mouseY<thinButtonY2+thinButtonHeight2) T=5;
- if ( mouseX>thinButtonX3   && mouseX<thinButtonX3+thinButtonWidth3 && mouseY>thinButtonY3 && mouseY<thinButtonY3+thinButtonHeight3) T=20;
- noStroke();
- fill(B);//change to canvas color!
+  //eraser
+  if (mouseX>eraserX && mouseX<eraserX+eraserWidth && mouseY>eraserY && mouseY<eraserY+eraserHeight) {
+    cOld=C;
+    C=BG;
+    T=30;
+  }
+  //
+  if ( mouseX>thinButtonX1   && mouseX<thinButtonX1+thinButtonWidth1 && mouseY>thinButtonY1 && mouseY<thinButtonY1+thinButtonHeight1) {
+    T=1;
+    C=cOld;
+  }
+ if ( mouseX>thinButtonX2   && mouseX<thinButtonX2+thinButtonWidth2 && mouseY>thinButtonY2 && mouseY<thinButtonY2+thinButtonHeight2) {
+   T=5;
+   C=cOld;
+ }
+ if ( mouseX>thinButtonX3   && mouseX<thinButtonX3+thinButtonWidth3 && mouseY>thinButtonY3 && mouseY<thinButtonY3+thinButtonHeight3) {
+   T=20;
+   C=cOld;
+ }
  if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight ) rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
 //stroke colors
 if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) C=red;
@@ -368,10 +569,8 @@ if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+
 if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
 if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
 //Canvas color
-if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) B=white;
-
-
-if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) B=black;
+if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) BG=white;
+if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) BG=black;
 //quit button
 if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) exit();
 //
