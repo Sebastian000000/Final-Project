@@ -75,13 +75,18 @@ String myDate="";
 //
 Minim minim;
 AudioPlayer song1;//creates playlist
+AudioPlayer song2;
 AudioMetaData songMetaData1;
 //
 void setup() {
   //Audio
   minim = new Minim(this);
   song1 = minim.loadFile("Music/Around_The_Corner_-_Infraction.mp3");
-  songMetaData1 = song1.getMetaData();
+  //
+  minim = new Minim(this);
+  song2 = minim.loadFile("Music/zapsplat_technology_video_game_nintendo_wii_console_electronic_click_002_66802.mp3");
+  
+  
   //
   //Date stamp
   myDate = nf(year(), 4)+"/"
@@ -608,44 +613,70 @@ void keyPressed() {
 void mousePressed() {
   //
   //
-  if (mouseX>loopX && mouseX<loopX+loopWidth && mouseY>loopY && mouseY<loopY+loopHeight ) song1.loop();
+  if (mouseX>loopX && mouseX<loopX+loopWidth && mouseY>loopY && mouseY<loopY+loopHeight ) {
+    song1.loop();
+     song2.play();
+     song2.rewind();
+  }
   if (mouseX>squareX5 && mouseX<squareX5+squareWidth5 && mouseY>squareY5 && mouseY<squareY5+squareHeight5) {
     if (song1.isMuted()) {
+       song2.play();
       fill(green);
       noStroke();
       circle(muteX, muteY, muteDiameter);
       song1.unmute();
+      song2.rewind();
     } else {
+          song2.play();
       song1.mute();
       fill(red);
       noStroke();
       circle(muteX, muteY, muteDiameter);
+      song2.rewind();
     }
   }//End Mute Button
-  if (mouseX>squareX3 && mouseX<squareX3+squareWidth3 && mouseY>squareY3 && mouseY<squareY3+squareHeight3 ) song1.skip(10000);//skip forward 1 second or 1000 milliseconds
-  if (mouseX>squareX4 && mouseX<squareX4+squareWidth4 && mouseY>squareY4 && mouseY<squareY4+squareHeight4 ) song1.skip(-10000);
+  if (mouseX>squareX3 && mouseX<squareX3+squareWidth3 && mouseY>squareY3 && mouseY<squareY3+squareHeight3 ) {
+    song1.skip(10000);
+    song2.play();
+    song2.rewind();
+  }
+  if (mouseX>squareX4 && mouseX<squareX4+squareWidth4 && mouseY>squareY4 && mouseY<squareY4+squareHeight4 ) {
+    song1.skip(-10000);
+    song2.play();
+    song2.rewind();
+  }
   if (mouseX>squareX1 && mouseX<squareX1+squareWidth1 && mouseY>squareY1 && mouseY<squareY1+squareHeight1 ) {
     if (song1.isPlaying()) {
+          song2.play();
       song1.pause();
       song1.rewind();
       fill(gray);
       noStroke();
       circle(muteX, muteY, muteDiameter*1.05);
+      song2.rewind();
     } else {
+          song2.play();
       song1.rewind();
+      song2.rewind();
     }
   }// end stop
   if ( mouseX>squareX2 && mouseX<squareX2+squareWidth2 && mouseY>squareY2 && mouseY<squareY2+squareHeight2 ) {
     if (song1.isPlaying() ) {
       song1.pause();
+          song2.play();
+          song2.rewind();
     } else if (song1.position() >= song1.length()-song1.length()*9/10) {
       song1.rewind();
       song1.play ();
+          song2.play();
+         song2.rewind();
     } else {
+          song2.play();
       song1.play();
       fill(green);
       noStroke();
       circle(muteX, muteY, muteDiameter);
+      song2.rewind();
     }
   }
   
@@ -655,60 +686,99 @@ void mousePressed() {
   //
   if (mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth-10 && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight-10) 
   if (draw==true) {
+     song2.play();
     draw=false;
+    song2.rewind();
   } else {
+     song2.play();
     draw = true;
+    song2.rewind();
     // 
   }//end of draw
   //eraser
   if (mouseX>eraserX && mouseX<eraserX+eraserWidth && mouseY>eraserY && mouseY<eraserY+eraserHeight) {
+    song2.play();
     cOld=C;
     C=BG;
     T=30;
+    song2.rewind();
   }
   //
   if ( mouseX>thinButtonX1   && mouseX<thinButtonX1+thinButtonWidth1 && mouseY>thinButtonY1 && mouseY<thinButtonY1+thinButtonHeight1) {
+     song2.play();
     T=1;
     C=cOld;
+    song2.rewind();
   }
  if ( mouseX>thinButtonX2   && mouseX<thinButtonX2+thinButtonWidth2 && mouseY>thinButtonY2 && mouseY<thinButtonY2+thinButtonHeight2) {
+    song2.play();
    T=5;
    C=cOld;
+   song2.rewind();
  }
  if ( mouseX>thinButtonX3   && mouseX<thinButtonX3+thinButtonWidth3 && mouseY>thinButtonY3 && mouseY<thinButtonY3+thinButtonHeight3) {
+    song2.play();
    T=20;
    C=cOld;
+   song2.rewind();
  }
  if (mouseX>clearX && mouseX<clearX+clearWidth && mouseY>clearY && mouseY<clearY+clearHeight) {
+    song2.play();
    BG=white;
    drawCanvas=true;
-  
+  song2.rewind();
  }
 //stroke colors
-if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) C=red;
-if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) C=green;
-if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) C=blue;
-if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight)C=black;
+if (mouseX>redX && mouseX<redX+redWidth && mouseY>redY && mouseY<redY+redHeight) {
+   song2.play();
+  C=red;
+  song2.rewind();
+}
+if (mouseX>greenX && mouseX<greenX+greenWidth && mouseY>greenY && mouseY<greenY+greenHeight) {
+  C=green;
+   song2.play();
+   song2.rewind();
+}
+if (mouseX>blueX && mouseX<blueX+blueWidth && mouseY>blueY && mouseY<blueY+blueHeight) {
+  C=blue;
+   song2.play();
+   song2.rewind();
+}
+if (mouseX>blackX && mouseX<blackX+blackWidth && mouseY>blackY && mouseY<blackY+blackHeight) {
+  C=black;
+   song2.play();
+   song2.rewind();
+}
 //Canvas color
 if (mouseX>canvasX1 && mouseX<canvasX1+canvasWidth1 && mouseY>canvasY1 && mouseY<canvasY1+canvasHeight1) {
+   song2.play();
   BG=white;
   drawCanvas=true;
+  song2.rewind();
 }
 if (mouseX>canvasX2 && mouseX<canvasX2+canvasWidth2 && mouseY>canvasY2 && mouseY<canvasY2+canvasHeight2) {
+   song2.play();
   BG=black;
   drawCanvas=true;
+  song2.rewind();
 }
 if (mouseX>canvasX3 && mouseX<canvasX3+canvasWidth3 && mouseY>canvasY3 && mouseY<canvasY3+canvasHeight3) {
-  
+   song2.play();
   drawCanvas3=true;
+  song2.rewind();
 }
 if (mouseX>canvasX4 && mouseX<canvasX4+canvasWidth4 && mouseY>canvasY4 && mouseY<canvasY4+canvasHeight4) {
-  
+   song2.play();
   drawCanvas4=true;
+  song2.rewind();
 }
 //
 //quit button
-if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) exit();
+if (mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight) {
+   song2.play();
+   song2.rewind();
+  exit();
+}
 //
 
 }
