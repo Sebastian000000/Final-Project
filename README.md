@@ -10,7 +10,7 @@ To Do List
 - [X] color changer (4 colors)
 - [ ] Music player
 - [X] icons on buttons
-- [ ] hover over for buttons// in progress
+- [X] hover over for buttons
 - [ ] text//90%complete
 - [ ] <del>date and time</del>//couldn't find a way so that the new numbers on the clock don't overlap over the old numbers
 - [X] display && orientation checker
