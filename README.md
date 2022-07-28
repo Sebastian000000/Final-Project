@@ -15,3 +15,4 @@ To Do List
 - [X] date <del>and time</del>//couldn't find a way so that the new numbers on the clock don't overlap over the old numbers
 - [X] display && orientation checker
 - [X] rounded off corners for buttons
+- [X] sound effect for buttons
